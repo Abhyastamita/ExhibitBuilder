@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_14_195035) do
+ActiveRecord::Schema.define(version: 2022_02_14_202421) do
+
+  create_table "digital_objects", force: :cascade do |t|
+    t.string "object"
+    t.string "description"
+    t.string "title"
+    t.string "creator"
+    t.date "date"
+    t.string "dataProvider"
+    t.string "sourceLink"
+    t.string "format"
+    t.string "place"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

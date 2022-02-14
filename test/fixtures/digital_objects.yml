@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  object: MyString
+  description: MyString
+  title: MyString
+  creator: MyString
+  date: MyString
+  dataProvider: MyString
+  sourceLink: MyString
+  format: MyString
+  place: MyString
+  coordinates: MyString
+
+two:
+  object: MyString
+  description: MyString
+  title: MyString
+  creator: MyString
+  date: MyString
+  dataProvider: MyString
+  sourceLink: MyString
+  format: MyString
+  place: MyString
+  coordinates: MyString
