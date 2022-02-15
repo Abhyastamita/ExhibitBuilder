@@ -1,10 +1,13 @@
 <div class="results-inline">
     <%= render "/layouts/messages"%>
 </div>
-<% if @stock %>
+<% if @collection %>
+    <% @collection.documents.each do |document| %>
     <div class="card card-header mt-4 results-inline">
-        <span class="stockticker"><strong>Symbol: </strong> <%= @stock.ticker.upcase %></span>
-        <span class="stockname"><strong>Name: </strong> <%= @stock.name %></span>
-        <span class="stockprice"><strong>Price: </strong> <%= @stock.last_price %></span>
+        <span class="title"><strong>Title: </strong> <%= document.title %></span>
+        <span class="description"><strong>Description: </strong> <%= document.description %></span>
+        <span class="source"><strong>Source: </strong> <%= document.source %></span>
+        <span class="image"><img src="https://dp.la/thumb/<%= document.id %>"</span>
     </div>
+    <% end %>
 <% end %>

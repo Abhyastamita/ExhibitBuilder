@@ -2,7 +2,7 @@
 <hr>
 <div class="search-area">
     <h2 class="h3">Search for Digital Objects</h2>
-    <%= form_tag search_dpla_path, method: :get do%> #remote: true, method: :get do%>
+    <%= form_tag search_dpla_path, remote: true, method: :get do%>
         <div class="form-group row">
             <div class="col-sm-10">
                 <%= text_field_tag :query, params[:query], placeholder: "Search the DPLA", autofocus: true, class: "form-control form-control-lg" %>
