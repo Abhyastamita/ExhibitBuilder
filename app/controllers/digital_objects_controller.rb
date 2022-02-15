@@ -2,22 +2,20 @@ class DigitalObjectsController < ApplicationController
 
   def search
     if (!params[:query].blank?)
-      @collection = DigitalObject.search(params[:query])
+      page = params[:page].present? ? params[:page] : 1;
+      @nextpage = page.to_i + 1;
+      @prevpage = page.to_i - 1;
+      @query = params[:query]
+      @collection = DigitalObject.search(@query, page)
       if (@collection)
-        respond_to do |format|
-           format.js {render partial: 'users/result'}
-        end
+        render 'users/my_objects'
       else
-        respond_to do |format|
-          flash.now[:alert] = "Please enter a valid symbol to search"
-          format.js {render partial: 'users/result'}
-        end
+        flash[:alert] = "Your search returned no results."
+        redirect_to my_objects_path
       end
     else
-      respond_to do |format|
-        flash.now[:alert] = "Please enter a symbol to search"
-        format.js {render partial: 'users/result'}
-      end
+      flash[:alert] = "Please enter a search term."
+        redirect_to my_objects_path
     end
   end
 

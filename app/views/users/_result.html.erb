@@ -2,6 +2,12 @@
     <%= render "/layouts/messages"%>
 </div>
 <% if @collection %>
+<div>
+    <% if @prevpage > 0 %>
+        <%= link_to "Previous page", search_dpla_path(:query => @query, :page => @prevpage), method: :get, class: "btn btn-info btn-lg" %>
+    <% end %>
+    <%= link_to "Next page", search_dpla_path(:query => @query, :page => @nextpage),method: :get, class: "btn btn-info btn-lg" %>
+</div>
     <% @collection.documents.each do |document| %>
     <div class="card card-header mt-4 results-inline">
         <span class="title"><strong>Title: </strong> <%= document.title %></span>
@@ -10,4 +16,10 @@
         <span class="image"><img src="https://dp.la/thumb/<%= document.id %>"</span>
     </div>
     <% end %>
+<div>
+    <% if @prevpage > 0 %>
+        <%= link_to "Previous page", search_dpla_path(:query => @query, :page => @prevpage), method: :get, class: "btn btn-info btn-lg" %>
+    <% end %>
+    <%= link_to "Next page", search_dpla_path(:query => @query, :page => @nextpage),method: :get, class: "btn btn-info btn-lg" %>
+</div>
 <% end %>
