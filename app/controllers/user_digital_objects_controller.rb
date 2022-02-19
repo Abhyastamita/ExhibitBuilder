@@ -1,0 +1,2 @@
+class UserDigitalObjectsController < ApplicationController
+end

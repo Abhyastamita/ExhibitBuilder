@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_14_202421) do
+ActiveRecord::Schema.define(version: 2022_02_19_020832) do
 
   create_table "digital_objects", force: :cascade do |t|
     t.string "object"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 2022_02_14_202421) do
     t.decimal "longitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_digital_objects", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "digital_object_id", null: false
+    t.string "caption"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["digital_object_id"], name: "index_user_digital_objects_on_digital_object_id"
+    t.index ["user_id"], name: "index_user_digital_objects_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,4 +59,6 @@ ActiveRecord::Schema.define(version: 2022_02_14_202421) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "user_digital_objects", "digital_objects"
+  add_foreign_key "user_digital_objects", "users"
 end
