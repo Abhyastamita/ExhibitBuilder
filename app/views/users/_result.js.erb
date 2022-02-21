@@ -1,1 +1,4 @@
-document.querySelector("#results").innerHTML = '<%= escape_javascript(render 'users/result.html') %>'
+var resultsModal = new bootstrap.Modal(document.getElementById('searchResults'), {
+  focus: true
+});
+resultsModal.show();

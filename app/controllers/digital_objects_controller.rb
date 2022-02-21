@@ -1,6 +1,7 @@
 class DigitalObjectsController < ApplicationController
 
   def search
+    @saved_collection = current_user.digital_objects
     if (!params[:query].blank?)
       page = params[:page].present? ? params[:page] : 1;
       @nextpage = page.to_i + 1;

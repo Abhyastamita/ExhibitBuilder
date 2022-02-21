@@ -1,27 +1,40 @@
-<div class="results-inline">
-    <%= render "/layouts/messages"%>
-</div>
 <% if @collection %>
-<div>
-    <% if @prevpage > 0 %>
-        <%= link_to "Previous page", search_dpla_path(:query => @query, :page => @prevpage), method: :get, class: "btn btn-info btn-lg" %>
-    <% end %>
-    <%= link_to "Next page", search_dpla_path(:query => @query, :page => @nextpage),method: :get, class: "btn btn-info btn-lg" %>
-</div>
-    <% @collection.documents.each do |document| %>
-    <div class="card card-header mt-4 results-inline">
-        <span class="title"><strong>Title: </strong> <%= document.title %></span>
-        <span class="description"><strong>Description: </strong> <%= document.description %></span>
-        <span class="source"><strong>Source: </strong> <%= document.source %></span>
-        <span class="image"><img class="img-fluid img-thumbnail" src="https://dp.la/thumb/<%= document.id %>"</span>
-        <%= link_to 'Add to collection', user_digital_objects_path(user: current_user, object_id: document.id),
-                class: "btn btn-success ms-2", method: :post %>
+    <div class="modal fade" id="searchResults" tabindex="-1" aria-labelledby="searchResultModal" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-md-down">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title h5" id="searchResultModal">Search Results</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            
+        <div>
+                <% if @prevpage > 0 %>
+                    <%= link_to "Previous page", search_dpla_path(:query => @query, :page => @prevpage), method: :get, class: "btn btn-info btn-lg me-2" %>
+                <% end %>
+                <%= link_to "Next page", search_dpla_path(:query => @query, :page => @nextpage),method: :get, class: "btn btn-info btn-lg" %>
+            </div>
+                <% @collection.documents.each do |document| %>
+                <div class="card card-header mt-4 results-inline">
+                    <span class="title"><strong>Title: </strong> <%= document.title %></span>
+                    <span class="description"><strong>Description: </strong> <%= document.description %></span>
+                    <span class="source"><strong>Source: </strong> <%= document.source %></span>
+                    <span class="image"><img class="img-fluid img-thumbnail" src="https://dp.la/thumb/<%= document.id %>"</span>
+                    <%= link_to 'Add to collection', user_digital_objects_path(user: current_user, object_id: document.id),
+                            class: "btn btn-success ms-2", method: :post %>
+                </div>
+                <% end %>
+            <div>
+                <% if @prevpage > 0 %>
+                    <%= link_to "Previous page", search_dpla_path(:query => @query, :page => @prevpage), method: :get, class: "btn btn-info btn-lg mt-2 me-2" %>
+                <% end %>
+                <%= link_to "Next page", search_dpla_path(:query => @query, :page => @nextpage),method: :get, class: "btn btn-info btn-lg mt-2" %>
+            </div> 
+
+
+        </div>
+        </div>
     </div>
-    <% end %>
-<div>
-    <% if @prevpage > 0 %>
-        <%= link_to "Previous page", search_dpla_path(:query => @query, :page => @prevpage), method: :get, class: "btn btn-info btn-lg" %>
-    <% end %>
-    <%= link_to "Next page", search_dpla_path(:query => @query, :page => @nextpage),method: :get, class: "btn btn-info btn-lg" %>
-</div>
+    </div>
+    <!--<script><%= render 'users/result.js', formats: :js %></script>-->
 <% end %>
