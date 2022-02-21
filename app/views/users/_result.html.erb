@@ -13,7 +13,7 @@
         <span class="title"><strong>Title: </strong> <%= document.title %></span>
         <span class="description"><strong>Description: </strong> <%= document.description %></span>
         <span class="source"><strong>Source: </strong> <%= document.source %></span>
-        <span class="image"><img src="https://dp.la/thumb/<%= document.id %>"</span>
+        <span class="image"><img class="img-fluid img-thumbnail" src="https://dp.la/thumb/<%= document.id %>"</span>
         <%= link_to 'Add to collection', user_digital_objects_path(user: current_user, object_id: document.id),
                 class: "btn btn-success ms-2", method: :post %>
     </div>

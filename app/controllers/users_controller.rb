@@ -1,10 +1,5 @@
 class UsersController < ApplicationController
   def my_objects
-    # if params[:query].present?
-    #   @query = params[:query]
-    # end
-    # if params[:page].present?
-    #   @page = params[:query]
-    # end
+    @saved_collection = current_user.digital_objects
   end
 end

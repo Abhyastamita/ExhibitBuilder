@@ -1,0 +1,32 @@
+<% if !@saved_collection.empty?%>
+<h2>Saved Collection</h2>
+<div class="row col-10 mt-4">
+    <table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Title</th>
+        <th scope="col">Source</th>
+        <th scope="col">Description</th>
+        <th scope="col">Updated</th>
+        <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @saved_collection.each do |item| %>
+        <tr>
+            <td ><img class="img-fluid img-thumbnail" src="https://dp.la/thumb/<%= item.object %>"/></td>
+            <td ><%= item.title %></td>
+            <td ><%= item.dataProvider %></td>
+            <td ><%= item.description %></td>
+            <td ><%= time_ago_in_words(item.updated_at) %> ago</td>
+            <td ><%= link_to 'Update', user_digital_object_path(object_id: item.object, id: item.id), method: :put, class: 'btn btn-sm btn-info mb-2' %>
+            <%= link_to 'Remove', user_digital_object_path(item), method: :delete, data: {confirm: "Are you sure?"},
+             class: 'btn btn-sm btn-warning' %></td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+
+</div>
+<% end %>
