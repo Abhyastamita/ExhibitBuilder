@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :exhibits
   resources :user_digital_objects
   devise_for :users
   root 'welcome#index'
