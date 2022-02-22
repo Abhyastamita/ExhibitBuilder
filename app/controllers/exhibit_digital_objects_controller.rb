@@ -1,0 +1,2 @@
+class ExhibitDigitalObjectsController < ApplicationController
+end

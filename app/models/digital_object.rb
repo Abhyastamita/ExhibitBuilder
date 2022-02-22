@@ -2,6 +2,8 @@ class DigitalObject < ApplicationRecord
 
   has_many :user_digital_objects
   has_many :users, through: :user_digital_objects
+  has_many :exhibit_digital_objects
+  has_many :exhibits, through: :exhibit_digital_objects
 
   def self.search(query, page)
     begin

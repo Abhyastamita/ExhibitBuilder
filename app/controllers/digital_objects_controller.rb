@@ -20,4 +20,8 @@ class DigitalObjectsController < ApplicationController
     end
   end
 
+  def show
+    @saved_collection = current_user.digital_objects
+  end
+
 end

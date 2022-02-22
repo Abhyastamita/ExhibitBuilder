@@ -1,5 +1,7 @@
 class ExhibitsController < ApplicationController
   before_action :set_exhibit, only: %i[ show edit update destroy ]
+  before_action :require_user, except: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   # GET /exhibits or /exhibits.json
   def index
@@ -13,16 +15,20 @@ class ExhibitsController < ApplicationController
   # GET /exhibits/new
   def new
     @exhibit = Exhibit.new
+    @digital_objects = current_user.digital_objects
   end
 
   # GET /exhibits/1/edit
   def edit
+    @exhibit.user = current_user
+    @digital_objects = current_user.digital_objects
   end
 
   # POST /exhibits or /exhibits.json
   def create
     @exhibit = Exhibit.new(exhibit_params)
-
+    @exhibit.user = current_user
+    @digital_objects = current_user.digital_objects
     respond_to do |format|
       if @exhibit.save
         format.html { redirect_to exhibit_url(@exhibit), notice: "Exhibit was successfully created." }
@@ -65,6 +71,14 @@ class ExhibitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def exhibit_params
-      params.require(:exhibit).permit(:title, :description)
+      params.require(:exhibit).permit(:title, :description, digital_object_ids: [])
     end
+
+    def require_same_user
+      if current_user != @exhibit.user
+        flash[:alert] = "You can only modify your own articles."
+        redirect_to @article
+      end
+    end
+
 end

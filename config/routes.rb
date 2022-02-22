@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :exhibit_digital_objects
   resources :exhibits
   resources :user_digital_objects
   devise_for :users

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_21_235026) do
+ActiveRecord::Schema.define(version: 2022_02_22_012807) do
 
   create_table "digital_objects", force: :cascade do |t|
     t.string "object"
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 2022_02_21_235026) do
     t.decimal "longitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "exhibit_digital_objects", force: :cascade do |t|
+    t.integer "exhibit_id", null: false
+    t.integer "digital_object_id", null: false
+    t.string "note"
+    t.integer "order"
+    t.boolean "display_image?"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["digital_object_id"], name: "index_exhibit_digital_objects_on_digital_object_id"
+    t.index ["exhibit_id"], name: "index_exhibit_digital_objects_on_exhibit_id"
   end
 
   create_table "exhibits", force: :cascade do |t|
@@ -67,6 +79,8 @@ ActiveRecord::Schema.define(version: 2022_02_21_235026) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "exhibit_digital_objects", "digital_objects"
+  add_foreign_key "exhibit_digital_objects", "exhibits"
   add_foreign_key "user_digital_objects", "digital_objects"
   add_foreign_key "user_digital_objects", "users"
 end

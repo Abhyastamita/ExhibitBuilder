@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  exhibit: one
+  digital_object: one
+  note: MyString
+  order: 1
+  display_image?: false
+
+two:
+  exhibit: two
+  digital_object: two
+  note: MyString
+  order: 1
+  display_image?: false

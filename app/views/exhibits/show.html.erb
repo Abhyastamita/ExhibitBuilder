@@ -10,5 +10,20 @@
   <%= @exhibit.description %>
 </p>
 
+<% if @exhibit.digital_objects.any? %>
+  <table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Title</th>
+        <th scope="col">Source</th>
+        <th scope="col">Description</th>
+        <th scope="col">Updated</th>
+        <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody><%= render @exhibit.digital_objects %></div></tbody></table>
+<% end %>
+
 <%= link_to 'Edit', edit_exhibit_path(@exhibit) %> |
 <%= link_to 'Back', exhibits_path %>
