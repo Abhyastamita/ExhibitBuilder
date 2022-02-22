@@ -1,4 +1,19 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<div class="container">
+<h1>Exhibit Builder</h1>
 
-<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+<p>Welcome to Exhibit Builder.  All the exhibits on this site were made using items from the <a href="dp.la">Digital Public Library of America</a>, which aggregates existing digital collections from around the country.<p>
+<div class="mt-4 mb-4 text-center">
+<%= link_to "View Exhibits", exhibits_path, class: "btn btn-outline-success mb-2" %><br>
+<% if logged_in?%>
+    <%= link_to "Search the DPLA", my_objects_path, class: "btn btn-outline-success mb-2" %><br>
+    <%= link_to "Create a New Exhibit", new_exhibit_path, class: "btn btn-outline-success mb-2" %><br>
+    <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "btn btn-outline-danger mb-2" %>
+<% end %>
+<% if !logged_in? %>
+    <p>Want to create  your own exhibits?</p>
+    <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-success mb-2" %><br>
+    <%= link_to "Create an Account",  new_user_registration_path, class: "btn btn-outline-success mb-2" %><br>
+<% end %>
+</div>
+<p>This page was created using Ruby on Rails</p>
+</div>
