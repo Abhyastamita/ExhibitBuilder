@@ -15,6 +15,9 @@ class UserDigitalObjectsController < ApplicationController
     object = DigitalObject.find(params[:id])
     user_digital_object = UserDigitalObject.where(user_id: current_user.id, digital_object_id: object).first
     user_digital_object.destroy
+    if (object.users.count == 0)
+      object.destroy
+    end
     flash[:notice] = "#{object.title} was successfully removed from your portfolio."
     redirect_to my_objects_path
   end

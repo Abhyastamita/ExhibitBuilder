@@ -10,3 +10,11 @@ environment.plugins.append("Provide", new webpack.ProvidePlugin({
   jQuery: 'jquery/src/jquery',
   bootstrap: ['bootstrap']
 }))
+
+const aliasConfig = {
+  'jquery-ui': 'jquery-ui-dist/jquery-ui.js'
+};
+
+environment.config.set('resolve.alias', aliasConfig);
+
+module.exports = environment
