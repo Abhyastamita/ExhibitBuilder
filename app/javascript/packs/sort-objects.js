@@ -6,3 +6,8 @@ sortable('.o-sortable1', {
 sortable('.o-sortable2', {
     acceptFrom: '.o-sortable1'
     });
+
+$("form").submit(function() {
+    $(".o-sortable2 option").prop('selected', true);
+    return true;
+});

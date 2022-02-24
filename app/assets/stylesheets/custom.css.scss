@@ -2,6 +2,11 @@
 /* .navbar {
     background-color: rgb(178, 216, 214) !important;
 } */
+option.row div.col-sm-11 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .field_with_errors input {
     border: red solid 3px;
 }
