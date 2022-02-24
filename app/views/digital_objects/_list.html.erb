@@ -15,7 +15,7 @@
     <tbody>
         <% @saved_collection.each do |item| %>
         <tr>
-            <td ><img class="img-fluid img-thumbnail" src="https://dp.la/thumb/<%= item.object %>"/></td>
+            <td ><img class="img-fluid img-thumbnail" src="https://dp.la/thumb/<%= item.object %>"/><br> <a target="_blank" href="<%= item.sourceLink %>">View Original</a></td>
             <td ><%= item.title %></td>
             <td ><%= item.dataProvider %></td>
             <td ><%= item.description %></td>
