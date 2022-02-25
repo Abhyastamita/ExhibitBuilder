@@ -26,13 +26,18 @@
                 <%= f.label :digital_objects, class: "col-form-label" %>
                 </div>
                 <div class="col-10">
-                <!--<%= f.collection_select(:digital_object_ids, @digital_objects, :id, :title, { prompt: "Press shift to select multiple options" }, { multiple: true, size: 10, class: "form-select shadow rounded" } ) %>-->
                 <h3>Collection</h3>
                 <div id="collection" class="o-sortable1 card container mb-2" style="min-height:25px;">
                 <% @digital_objects.each do |object| %>
                     <option value="<%= object.id %>" class="row">
                         <div class="col-sm-1"><img class="img-fluid img-thumbnail" src="https://dp.la/thumb/<%= object.object %>"></div>
                         <div class="col-sm-11"><%= object.title %> - <%= object.description %> </div>
+                        <%= fields_for :exhibit_digital_objects, @exhibit.exhibit_digital_objects do |exhibit_obj_form| %>
+                            <%= exhibit_obj_form.text_field :note %>
+                        <% end %>
+
+
+                        <%= f.text_field @exhibit_objects[object.id][:order], class: "form-control shadow rounded" %>
                     </option>
                 <% end %>
                 </div>
