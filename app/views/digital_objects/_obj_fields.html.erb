@@ -15,8 +15,8 @@
     </script>
 
     <div class="field">
-      <%= f.label :note, "Exhibit Note", class: "form-label mt-4" %>
-      <%= f.text_area :note, class: "form-control" %>
+      <%= f.label :content, "Exhibit Note", class: "form-label mt-4" %>
+      <%= f.rich_text_area :content, class: "form-control" %>
     </div>
       <%= f.hidden_field :object_order, class: "object-order" %>
     <%= link_to_remove_association "Remove object", f, class: "btn btn-outline-danger mt-2" %>

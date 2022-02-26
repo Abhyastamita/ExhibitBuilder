@@ -14,3 +14,6 @@ import "custom/incidental"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+require("trix")
+require("@rails/actiontext")
