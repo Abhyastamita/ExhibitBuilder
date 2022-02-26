@@ -21,7 +21,7 @@
         <th scope="col">Updated</th>
         </tr>
     </thead>
-    <tbody><%= render @exhibit.digital_objects %></div></tbody></table>
+    <tbody><%= render @exhibit.digital_objects.sort_by { |digital_object| digital_object.object_order } %></div></tbody></table>
 <% end %>
 
 <%= link_to 'Edit', edit_exhibit_path(@exhibit) %> |

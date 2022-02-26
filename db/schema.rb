@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_22_012807) do
+ActiveRecord::Schema.define(version: 2022_02_26_050113) do
 
   create_table "digital_objects", force: :cascade do |t|
     t.string "object"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_012807) do
     t.integer "exhibit_id", null: false
     t.integer "digital_object_id", null: false
     t.string "note"
-    t.integer "order"
+    t.integer "object_order"
     t.boolean "display_image?"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

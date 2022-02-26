@@ -22,8 +22,10 @@ $(".sort").change(function() {
 });
 
 $("form").submit(function() {
-    $(".o-sortable2 option").prop('selected', true);
-    //var chosen = $("#digital_object_ids").find("option")
-    //loop through and get value to have digital_object.id
+    //$(".o-sortable2 option").prop('selected', true);
+    var chosen = $(".nested-fields");
+    chosen.each(function(index){
+        $(this).find(".object-order").val(index);
+    });
     return true;
 });
