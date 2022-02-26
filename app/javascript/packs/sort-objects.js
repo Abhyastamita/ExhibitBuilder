@@ -1,24 +1,28 @@
 import sortable from 'custom/html5sortable';
-
-sortable('.o-sortable1', {
-    acceptFrom: '.o-sortable2'
-    });
-sortable('.o-sortable2', {
-    acceptFrom: '.o-sortable1'
-    });
+import imagepicker from 'custom/image-picker';
 
 sortable('.sort', {
     forcePlaceholderSize: true,
     placeholderClass: 'ph-class',
-    hoverClass: 'bg-maroon yellow', 
 });
 
 $(".sort").change(function() {
     sortable('.sort', {
         forcePlaceholderSize: true,
         placeholderClass: 'ph-class',
-        hoverClass: 'bg-maroon yellow', 
     });
+});
+
+$(".nested-fields option").each(function() {
+    var digital_object_id = $(this).val();
+    var data_img = $("#obj-" + digital_object_id);
+    $(this).attr("data-img-src","https://dp.la/thumb/" + data_img.val());
+    $(this).attr("data-img-label", encodeURIComponent(data_img.text()));
+});
+
+$("select").imagepicker({
+    show_label: true,
+    hide_select: false
 });
 
 $("form").submit(function() {
