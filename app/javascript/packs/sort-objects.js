@@ -6,23 +6,32 @@ sortable('.sort', {
     placeholderClass: 'ph-class',
 });
 
-$(".sort").change(function() {
+function regenerate () {
     sortable('.sort', {
         forcePlaceholderSize: true,
         placeholderClass: 'ph-class',
     });
-});
 
-$(".nested-fields option").each(function() {
-    var digital_object_id = $(this).val();
-    var data_img = $("#obj-" + digital_object_id);
-    $(this).attr("data-img-src","https://dp.la/thumb/" + data_img.val());
-    $(this).attr("data-img-label", encodeURIComponent(data_img.text()));
-});
+    $(".nested-fields option").each(function() {
+        var digital_object_id = parseInt($(this).val());
+        if (typeof digital_object_json[digital_object_id] != 'undefined') {
+            $(this).attr("data-img-src","https://dp.la/thumb/" + digital_object_json[digital_object_id].img_id);
+            $(this).attr("data-img-label", digital_object_json[digital_object_id].title);
+        }
+    });
 
-$("select").imagepicker({
-    show_label: true,
-    hide_select: false
+    $("select").imagepicker({
+        show_label: true,
+        hide_select: false
+    });
+
+    $(".image_picker_image").addClass("img-fluid");
+}
+
+regenerate();
+
+$('#digital_objects').on('new_object', function(e) {
+    regenerate();    
 });
 
 $("form").submit(function() {

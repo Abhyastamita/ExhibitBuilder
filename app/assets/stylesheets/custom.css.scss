@@ -83,3 +83,24 @@ ul.thumbnails.image_picker_selector {
     /* line 48, source/sass/image-picker.scss */
     ul.thumbnails.image_picker_selector li .thumbnail.selected {
       background: #08C; }
+
+.image_picker_selector {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image_picker_selector li {
+  flex: 1;
+  flex-basis: 20%;
+}
+
+ .image_picker_image {
+   max-height: 125px;
+//   max-width: 125px;
+ }
+ .image_picker_selector .thumbnail {
+//   max-width: 125px;
+  max-height: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
