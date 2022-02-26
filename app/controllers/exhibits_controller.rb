@@ -16,12 +16,16 @@ class ExhibitsController < ApplicationController
   def new
     @exhibit = Exhibit.new
     @digital_objects = current_user.digital_objects
+    @objects_in_exhibit = current_user.digital_objects.where(id: @exhibit.digital_objects.ids)
+    @objects_not_in_exhibit = current_user.digital_objects.where.not(id: @exhibit.digital_objects.ids)
   end
 
   # GET /exhibits/1/edit
   def edit
     @exhibit.user = current_user
     @digital_objects = current_user.digital_objects
+    @objects_in_exhibit = current_user.digital_objects.where(id: @exhibit.digital_objects.ids)
+    @objects_not_in_exhibit = current_user.digital_objects.where.not(id: @exhibit.digital_objects.ids)
   end
 
   # POST /exhibits or /exhibits.json
@@ -29,6 +33,8 @@ class ExhibitsController < ApplicationController
     @exhibit = Exhibit.new(exhibit_params)
     @exhibit.user = current_user
     @digital_objects = current_user.digital_objects
+    @objects_in_exhibit = current_user.digital_objects.where(id: @exhibit.digital_objects.ids)
+    @objects_not_in_exhibit = current_user.digital_objects.where.not(id: @exhibit.digital_objects.ids)
     respond_to do |format|
       if @exhibit.save
         format.html { redirect_to exhibit_url(@exhibit), notice: "Exhibit was successfully created." }
@@ -71,7 +77,7 @@ class ExhibitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def exhibit_params
-      params.require(:exhibit).permit(:title, :description, digital_object_ids: [], exhibit_digital_objects_attributes: [:note, :order])
+      params.require(:exhibit).permit(:title, :description, digital_object_ids: [], digital_object_attributes: [:note], exhibit_digital_objects_attributes: [:id, :note, :order, :digital_object_id, :exhibit_id, :_destroy])
     end
 
     def require_same_user

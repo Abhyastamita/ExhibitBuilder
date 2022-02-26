@@ -4,6 +4,7 @@
     <td ><%= digital_object.dataProvider %></td>
     <td ><%= digital_object.description %></td>
     <td ><%= time_ago_in_words(digital_object.updated_at) %> ago</td>
+    <td ><%= digital_object.note %></td>
     <!--
     <td ><%= link_to 'Update', user_digital_object_path(object_id: digital_object.object, id: digital_object.id), method: :put, 
         class: 'btn btn-sm btn-info mb-2' %>

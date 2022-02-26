@@ -26,26 +26,19 @@
                 <%= f.label :digital_objects, class: "col-form-label" %>
                 </div>
                 <div class="col-10">
-                <h3>Collection</h3>
-                <div id="collection" class="o-sortable1 card container mb-2" style="min-height:25px;">
-                <% @digital_objects.each do |object| %>
-                    <option value="<%= object.id %>" class="row">
-                        <div class="col-sm-1"><img class="img-fluid img-thumbnail" src="https://dp.la/thumb/<%= object.object %>"></div>
-                        <div class="col-sm-11"><%= object.title %> - <%= object.description %> </div>
-                        <%= fields_for :exhibit_digital_objects, @exhibit.exhibit_digital_objects do |exhibit_obj_form| %>
-                            <%= exhibit_obj_form.text_field :note %>
-                        <% end %>
 
-
-                        <%= f.text_field @exhibit_objects[object.id][:order], class: "form-control shadow rounded" %>
-                    </option>
-                <% end %>
-                </div>
-                <h3>Exhibit</h3>
-                <option>Drag and drop objects from the collection into the exhibit.</option>
-                <select class="o-sortable2 form-select shadow rounded container col-sm-12" multiple size="10" style="min-height:25px;" name="exhibit[digital_object_ids][]" id ="digital_object_ids">
+                <h3>Objects to Add</h3>
+                <div id='digital_objects' class="sort" >
                     
-                </select>
+                    <%= f.fields_for :exhibit_digital_objects do |obj| %>
+                    <%= render 'digital_objects/obj_fields', :f => obj %>
+                    <% end %>
+                    <div class='links'>
+                    <%= link_to_add_association 'add object', f, :exhibit_digital_objects, partial: 'digital_objects/obj_fields' %>
+                    </div>
+                </div>
+
+                
                 
 
                 </div>

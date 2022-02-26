@@ -23,6 +23,7 @@ gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.1'
 gem 'font-awesome-rails'
 gem 'DPLibrary'
+gem "cocoon"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

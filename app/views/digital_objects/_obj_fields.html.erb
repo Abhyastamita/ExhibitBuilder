@@ -1,0 +1,9 @@
+  <div class='nested-fields mt-2 mb-2 card px-4 py-4'>
+    <%= f.collection_select(:digital_object_id, @digital_objects, :id, :title, { prompt: "Press shift to select multiple options" }, { size: 10, class: "form-select shadow rounded" } ) %>
+
+    <div class="field">
+      <%= f.label :note %>
+      <%= f.text_field :note %>
+    </div>
+    
+  </div>
