@@ -1,13 +1,15 @@
-<tr>
-    <td ><img class="img-fluid img-thumbnail" src="https://dp.la/thumb/<%= digital_object.object %>"/></td>
-    <td ><%= digital_object.title %></td>
-    <td ><%= digital_object.dataProvider %></td>
-    <td ><%= digital_object.description %></td>
-    <td ><%= time_ago_in_words(digital_object.updated_at) %> ago</td>
-    <td ><%= digital_object.exhibit_digital_objects.where(exhibit_id: @exhibit).first.content  %></td>
-    <!--
-    <td ><%= link_to 'Update', user_digital_object_path(object_id: digital_object.object, id: digital_object.id), method: :put, 
-        class: 'btn btn-sm btn-info mb-2' %>
-    <%= link_to 'Remove', user_digital_object_path(digital_object), method: :delete, data: {confirm: "Are you sure?"},
-        class: 'btn btn-sm btn-warning' %></td>-->
-</tr>
+<div class="card col-md-5 col-sm-10 text-center mb-4 shadow rounded">
+    <div class="card-img-top pt-4">
+    <figure class="figure p-4 shadow-sm">
+        <img src="https://dp.la/thumb/<%= digital_object.object %>" class="figure-img img-fluid rounded" alt="<%= digital_object.title %>" onerror="this.onerror=null;this.src='noimg.svg';">
+        <figcaption class="figure-caption">
+            <h2 class="h5"><%= digital_object.title %></h2>
+            <%= digital_object.dataProvider %><br>
+            <a target="_blank" href="<%= digital_object.sourceLink %>" class="btn btn-outline-secondary btn-sm my-2">View Original</a>
+        </figcaption>
+    </figure>
+    </div>
+    <div class="item-discussion card-body pb-4 mx-2 text-start">
+        <%= digital_object.exhibit_digital_objects.where(exhibit_id: @exhibit).first.content  %>
+    </div>
+</div>

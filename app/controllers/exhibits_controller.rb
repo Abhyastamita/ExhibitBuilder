@@ -77,7 +77,7 @@ class ExhibitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def exhibit_params
-      params.require(:exhibit).permit(:title, :id, :description, digital_object_ids: [], digital_object_attributes: [:note], exhibit_digital_objects_attributes: [:id, :note, :content, :object_order, :digital_object_id, :exhibit_id, :_destroy])
+      params.require(:exhibit).permit(:title, :id, :description, :description_content, digital_object_ids: [], digital_object_attributes: [:note], exhibit_digital_objects_attributes: [:id, :note, :content, :object_order, :digital_object_id, :exhibit_id, :_destroy])
     end
 
     def require_same_user

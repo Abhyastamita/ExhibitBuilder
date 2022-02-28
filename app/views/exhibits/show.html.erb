@@ -1,28 +1,24 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="mx-auto d-flex justify-content-around flex-wrap" >
+    <div class="card shadow col-sm-11  mb-4 shadow rounded">
+      <div class="card-header">
+        <h1>
+          <%= @exhibit.title %>
+        </h1>
+      </div>
+      <div class="card-body">
+        <p>
+          <%= @exhibit.description_content %>
+        </p>
+      </div>
+    </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @exhibit.title %>
-</p>
+    <% if @exhibit.digital_objects.any? %>
+        <%= render @exhibit.digital_objects.sort_by { |digital_object| digital_object.object_order } %>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @exhibit.description %>
-</p>
-
-<% if @exhibit.digital_objects.any? %>
-  <table class="table table-striped">
-    <thead>
-        <tr>
-        <th scope="col">Image</th>
-        <th scope="col">Title</th>
-        <th scope="col">Source</th>
-        <th scope="col">Description</th>
-        <th scope="col">Updated</th>
-        </tr>
-    </thead>
-    <tbody><%= render @exhibit.digital_objects.sort_by { |digital_object| digital_object.object_order } %></div></tbody></table>
-<% end %>
-
-<%= link_to 'Edit', edit_exhibit_path(@exhibit) %> |
-<%= link_to 'Back', exhibits_path %>
+  <%= link_to 'Edit', edit_exhibit_path(@exhibit) %> |
+  <%= link_to 'Back', exhibits_path %>
+</div>
