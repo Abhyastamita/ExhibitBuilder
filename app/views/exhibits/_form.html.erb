@@ -28,7 +28,8 @@
                 <div class="col-10">
 
                 <h3>Objects to Add</h3>
-                <div id='digital_objects' class="sort" >
+                <p>Drag objects to re-order</p>
+                <div id='digital_objects' class="sort accordion" >
                     
                     <%= f.fields_for :exhibit_digital_objects do |obj| %>
                     <%= render 'digital_objects/obj_fields', :f => obj %>
@@ -37,10 +38,6 @@
                     <%= link_to_add_association 'Add Object', f, :exhibit_digital_objects, partial: 'digital_objects/obj_fields', class: "btn btn-primary mt-2" %>
                     </div>
                 </div>
-
-                
-                
-
                 </div>
             </div>
             
@@ -49,6 +46,18 @@
             </div>
         </div>
         <% end %>
+        <script>
+      digital_object_json = {
+        <% @digital_objects.each do |obj|%>
+            <%= obj.id %> : {
+              "title": "<%= obj.title %>",
+              "description": "<%= obj.description %>",
+              "img_id": "<%= obj.object %>",
+              "source": "<%= obj.dataProvider %>"
+          }, 
+        <% end %>
+      };
+    </script>
         <%= javascript_pack_tag 'sort-objects' %>
     </div>
     </div>

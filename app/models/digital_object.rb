@@ -2,7 +2,7 @@ class DigitalObject < ApplicationRecord
 
   has_many :user_digital_objects
   has_many :users, through: :user_digital_objects
-  has_many :exhibit_digital_objects
+  has_many :exhibit_digital_objects, inverse_of: :digital_object, dependent: :destroy
   has_many :exhibits, through: :exhibit_digital_objects
   accepts_nested_attributes_for :exhibit_digital_objects
 
