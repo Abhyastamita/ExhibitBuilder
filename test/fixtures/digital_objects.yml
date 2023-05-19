@@ -10,7 +10,8 @@ one:
   sourceLink: MyString
   format: MyString
   place: MyString
-  coordinates: MyString
+  latitude: MyString
+  longitude: MyString
 
 two:
   object: MyString
@@ -22,4 +23,5 @@ two:
   sourceLink: MyString
   format: MyString
   place: MyString
-  coordinates: MyString
+  latitude: MyString
+  longitude: MyString
