@@ -18,7 +18,7 @@ class DigitalObject < ApplicationRecord
     @documents_collection = DPLibrary::DocumentCollection.new({id: object_id})
     digital_object = @documents_collection.documents.first
     begin
-      new(object: digital_object.id, description: digital_object.description ? digital_object.description.join(" -- ") : "", title: digital_object.title[0], creator: digital_object.creator, dataProvider: digital_object.source, sourceLink: digital_object.url, format: digital_object.format)
+      new(object: digital_object.id, description: digital_object.description ? digital_object.description.join(" -- ") : "", title: digital_object.title[0], creator: digital_object.creator, dataProvider: digital_object.source['name'] ? digital_object.source['name'] : digital_object.source, sourceLink: digital_object.url, format: digital_object.format)
     rescue => exception
       return nil
     end

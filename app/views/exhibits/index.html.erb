@@ -1,29 +1,33 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Exhibits</h1>
+<div class="container">
+  <div class="mx-auto d-flex justify-content-around flex-wrap" >
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @exhibits.each do |exhibit| %>
-      <tr>
-        <td><%= exhibit.title %></td>
-        <td><%= exhibit.description %></td>
-        <td><%= link_to 'Show', exhibit %></td>
-        <td><%= link_to 'Edit', edit_exhibit_path(exhibit) %></td>
-        <td><%= link_to 'Destroy', exhibit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
+      <div class="card col-md-3 col-sm-5 text-center mb-4 mx-2 shadow rounded text-center">
+          <div class="item-discussion card-body pb-4 mx-2">
+               <h2 class="h3"><%= exhibit.title %></h2>
+                  <p><%= exhibit.description %></p>
+                  <%= link_to 'View', exhibit_path(exhibit), class: "btn btn-outline-secondary btn-sm my-2" %>
+                  <figure class="figure shadow-sm p-4">
+                    <% if exhibit.digital_objects.any? %>
+                      <img src="https://dp.la/thumb/<%= exhibit.digital_objects.first.object %>" class="figure-img img-fluid rounded" alt="<%= exhibit.digital_objects.first.title %>" onerror="this.onerror=null;this.src='noimg.svg';">
+                    <% end %>
+                    <figcaption class="figure-caption">
+                        <p><%= exhibit.digital_objects.first.title %> | <%= exhibit.digital_objects.first.dataProvider %><br>
+                        <a target="_blank" href="<%= exhibit.digital_objects.first.sourceLink %>" class="">View Original</a></p>
+                    </figcaption>
+                  </figure><br>
+                  <% if exhibit.user == current_user %>
+                    <%= link_to 'Edit', edit_exhibit_path(exhibit) %> | <%= link_to 'Destroy', exhibit, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <% end %>
+          </div>
+      </div>
+    <% end %>
+</div>
+</div>
 <br>
 
 <%= link_to 'New Exhibit', new_exhibit_path %>

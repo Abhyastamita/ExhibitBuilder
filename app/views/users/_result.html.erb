@@ -18,7 +18,7 @@
                 <div class="card card-header mt-4 results-inline">
                     <span class="title"><strong>Title: </strong> <%= document.title[0] %></span>
                     <span class="description"><strong>Description: </strong> <%= document.description.join(" -- ") if document.description %></span>
-                    <span class="source"><strong>Source: </strong> <%= document.source %></span>
+                    <span class="source"><strong>Source: </strong> <%= document.source['name'] %></span>
                     <span class="image">
                         <img class="img-fluid img-thumbnail" src="https://dp.la/thumb/<%= document.id %>"<br>
                         <a target="_blank" href="<%= document.url %>">View Original</a>
